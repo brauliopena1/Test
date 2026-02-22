@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+
+/**
+ * Prevent duplicates
+ */
+
+public class Exist {
+	private String removeLetter(String item) { //Avoids repeated items that ends with "s", but accepts new 
+		String trimLetter = item.toLowerCase();
+		
+		if (trimLetter.endsWith("s")) {
+			trimLetter = trimLetter.substring(0, trimLetter.length() - 1);
+		}
+		
+		return trimLetter;
+	}
+	public boolean itemExist(String newItem, ArrayList<addItem> groceryLists) {
+	//Checks for items that already exists	
+		String trimmedNewLetter = removeLetter(newItem);
+		
+		for (int i = 0; i < groceryLists.size(); i++) {
+			addItem currentList = groceryLists.get(i);
+			
+			String existingName = currentList.getItemName();
+			String newLetter = removeLetter(existingName);
+			
+            	if (trimmedNewLetter.equals(newLetter)) {
+            		return true; //Duplicate
+            	}
+		}
+		
+		return false; //No Duplicate
+	}
+
+}
