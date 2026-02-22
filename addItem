@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+
+/**
+ * Blueprint for each grocery item
+ */
+
+public class addItem {
+	private ArrayList<String> items;
+	private String itemName;
+	private String status; // check "x" or "-"
+	
+	public addItem(String itemName) { //Constructor parameterized
+		this.itemName = itemName;
+		this.status = "-";
+		items = new ArrayList<>(20);
+	}
+	
+	public void box() { //Declares the array with 20 free slots
+		for (int i = 1; i <= 20; ++i) {
+			items.add("");
+		}
+	}
+	public void setItem(int position, String item) { //Sets the name inside of the free arrays
+	    if (position >= 0 && position < items.size()) {
+	        items.set(position, item);
+	    }
+	}
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getItemName() { //For Return method (only the name)
+	    return itemName;
+	}
+	
+	public ArrayList<String> getItems() { //No use
+	    return items;
+	}
+}
