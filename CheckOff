@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+
+/**
+ * Mark items as checked
+ */
+
+public class CheckOff {
+	public void checkOffItem(String itemToCheck,  ArrayList<addItem> groceryLists) {
+		boolean found = false; //Item not found
+		
+		for (int i = 0; i < groceryLists.size(); ++i) {
+			 addItem currentList = groceryLists.get(i);
+			 String currentName = currentList.getItemName(); //Get the item's name
+			 
+			 if (currentName.equalsIgnoreCase(itemToCheck)) { //Check if the item's name matches what user wants
+				 found = true; //Found
+				 
+				 String currentStatus = currentList.getStatus(); //Retrieve current status "X" or "-"
+				 
+				 if (currentStatus.equals("X")) { //Check if already marked
+					 System.out.println(itemToCheck + " is already marked");
+				 }
+				 else { //Item is not checked off yet
+					 currentList.setStatus("X"); //Change it to "X"
+						 System.out.println(itemToCheck + " marked");
+				 }
+				 
+				 break;	//Item found no need to continue			 
+			 }
+		}
+		
+		if (!found) {  //if  we went through all items and found is still false (true)
+			System.out.println("The item " + itemToCheck + " does not exist");
+		}
+	}
+}
