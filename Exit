@@ -1,0 +1,14 @@
+import java.util.ArrayList;
+
+/**
+ * Display final list and goodbye
+ */
+
+public class Exit {
+	public void exitProgram(ArrayList<addItem> groceryLists) {
+		Return display = new Return();
+		display.printList(groceryLists); //Call the method "printList" from the class "Return"
+		System.out.println();
+		System.out.print("Thanks for using the program. Goodbye");
+	}
+}
