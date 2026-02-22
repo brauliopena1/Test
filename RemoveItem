@@ -1,0 +1,24 @@
+package GroceryList;
+
+import java.util.ArrayList;
+
+/**
+ * Remove items
+ */
+
+public class RemoveItem {
+	public boolean removeByName(String itemToRemove, ArrayList<addItem> groceryLists) {
+		
+		for(int i = 0; i < groceryLists.size(); i++) {
+			addItem currentList = groceryLists.get(i);
+			
+			String currentName = currentList.getItemName();
+			
+			if(currentName.equalsIgnoreCase(itemToRemove)) {
+				groceryLists.remove(i);
+				return true; //Item removed
+			}
+		}
+		return false; //item not found
+	}
+}
