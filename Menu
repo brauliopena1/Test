@@ -1,0 +1,85 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+/**
+ * User interface
+ */
+
+public class Menu {
+	public static void main(String[] args) {
+		Scanner scnr = new Scanner(System.in);
+		String optionNum = "";
+		int freeSlot = 0;
+		ArrayList<addItem> groceryLists = new ArrayList<>(); //Array list that comes from the class "addItem"
+		
+		while (!optionNum.equals("5")) {
+		System.out.println("Welcome to Grocery List Management!");
+		System.out.println("1. Add Item to your Grocery List");
+		System.out.println("2. Remove Item from your Grocery List");
+		System.out.println("3. \" Check Off \" an Item from your Grocery List");
+		System.out.println("4. Display your Grocery List");
+		System.out.println("5. Exit");
+		System.out.print("Please enter the number of an option above : ");
+		
+		optionNum = scnr.nextLine();
+		
+			if (optionNum.equals("1")) { //Option 1----------------------------------------------------------------------------------------------------------
+				String itemName;
+				
+				System.out.print("Please add your item: ");
+				itemName = scnr.nextLine();
+				
+				Exist checker = new Exist(); //Class "Exist"
+				boolean duplicate = checker.itemExist(itemName, groceryLists); //Call the method "itemExist" from the class "Exist"
+				
+				if (duplicate) {
+					System.out.println(itemName + " already exists");
+				}
+					else {
+						if (freeSlot < 20) {
+						addItem Name = new addItem(itemName); //Class "addItem"
+						Name.box(); //Call the method "box" from the class "addItem"
+						Name.setItem(freeSlot, itemName); //Call the method "setItem" from the class "addItem"
+						groceryLists.add(Name); //Fills the ArrayList
+						++freeSlot;
+						}
+					}
+			} //End of Option 1----------------------------------------------------------------------------------------------------------
+			
+			if (optionNum.equals("2")) { //Option 2----------------------------------------------------------------------------------------------------------
+				System.out.print("Enter the item to remove: ");
+				String itemToRemove = scnr.nextLine();
+				
+				RemoveItem remover = new RemoveItem(); //Class "RemoveItem"
+				if (remover.removeByName(itemToRemove, groceryLists) ) { //Call the method "removeByName" from the class "RemoveItem"
+					freeSlot--;
+					System.out.println(itemToRemove + " removed");
+				}
+				else {
+					System.out.println(itemToRemove + " not found");
+				}
+			} //End of option 2----------------------------------------------------------------------------------------------------------
+			
+			if (optionNum.equals("3")) { //Option 3----------------------------------------------------------------------------------------------------------
+				System.out.print("Enter the item you want to mark: ");
+				String itemToCheck = scnr.nextLine();
+				
+				CheckOff checker = new CheckOff();
+				checker.checkOffItem(itemToCheck, groceryLists);
+			} //End of option 3----------------------------------------------------------------------------------------------------------
+			
+			if (optionNum.equals("4")) { //Option 4----------------------------------------------------------------------------------------------------------
+				System.out.println("List: ");
+				Return display = new Return(); //Class "Return"
+				display.printList(groceryLists); //Call the method "printList" from the class "Return"
+			} //End of Option 4----------------------------------------------------------------------------------------------------------
+			
+			if (optionNum.equals("5")) { //Option 5----------------------------------------------------------------------------------------------------------
+				System.out.println("-------------");
+				Exit finalList = new Exit(); //Call method "finalList" from the class "Exit"
+				finalList.exitProgram(groceryLists); //Prints the final list
+			} //End of Option 5----------------------------------------------------------------------------------------------------------
+		}
+		scnr.close();
+	}
+}
