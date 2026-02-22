@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+/**
+ * Display list
+ */
+
+public class Return {
+	 
+	public void printList(ArrayList<addItem> groceryLists) { //Prints the whole list
+		for (int i = 0; i < groceryLists.size(); i++) {
+            addItem currentList = groceryLists.get(i);
+            String status = currentList.getStatus();
+            String name = currentList.getItemName();
+            
+            System.out.println((i + 1) + ": " + status + " " + name);
+		}
+	}
+
+}
